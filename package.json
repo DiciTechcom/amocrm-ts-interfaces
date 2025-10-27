@@ -27,6 +27,6 @@
   },
   "homepage": "https://amodev.ru/faq/repositories/interfaces",
   "devDependencies": {
-    "typescript": "^3.8.2"
+    "typescript": "^3.9.10"
   }
 }
