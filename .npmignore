@@ -1,7 +1,52 @@
-src
+# Source files
+src/
 tsconfig.json
-tslint.json
+
+# Lock files
 yarn.lock
+pnpm-lock.yaml
+package-lock.json
+
+# Config files
+tslint.json
 .prettierrc
-.vscode
+.editorconfig
 jest.json
+.eslintrc*
+.prettierignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+
+# Documentation (only for development)
+CLAUDE.md
+
+# Test files
+tests/
+test/
+**/*.test.ts
+**/*.spec.ts
+coverage/
+
+# Build artifacts
+*.log
+npm-debug.log*
+.DS_Store
+
+# Misc
+.npmrc
+pnpm-workspace.yaml

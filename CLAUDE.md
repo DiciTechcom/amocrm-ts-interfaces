@@ -4,13 +4,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is `@amodev/interfaces` - a TypeScript type definitions library for AmoCRM and AmoDEV entities. The package provides comprehensive type safety for working with AmoCRM API v4 responses, custom fields, entities, and AmoDEV internal structures.
+This is `@dicitech/amo-kommo-types` - a TypeScript type definitions library for AmoCRM API v4 and Kommo Widgets. The package provides comprehensive type safety for working with AmoCRM REST API v4 responses, custom fields, entities, and Kommo widget development.
 
 **Package Details:**
-- Published to npm as `@amodev/interfaces`
-- Distributed version: v4.0.9
+- Published to npm as `@dicitech/amo-kommo-types`
+- Current version: 1.0.0
 - Output: CommonJS modules with TypeScript declarations
-- Homepage: https://amodev.ru/faq/repositories/interfaces
+- Repository: https://github.com/DiciTechcom/amo-kommo-types
+- NPM: https://www.npmjs.com/package/@dicitech/amo-kommo-types
 
 ## Build Commands
 
@@ -22,21 +23,21 @@ npm run build
 npm run build:check
 ```
 
-## Code Architecture
+## Package Architecture
 
 ### Top-Level Structure
 
-The package is organized into three main namespaces exported from `src/index.ts`:
+The package is organized into five main categories exported from `src/index.ts`:
 
-1. **`interfaces/amocrm`** - AmoCRM API types (backend + frontend)
-2. **`interfaces/amodev`** - AmoDEV internal entity types
-3. **`interfaces/base`** - Shared base types and enums
+1. **`api/`** - AmoCRM REST API v4 types (backend + frontend)
+2. **`crm/`** - Kommo Widget CRM types (APP object, constants)
+3. **`integration/`** - Kommo Widget integration types (callbacks, lifecycle)
+4. **`manifest/`** - Kommo Widget manifest configuration types
+5. **`utils/`** - Shared utility types
 
-### AmoCRM Interfaces (`src/interfaces/amocrm`)
+### AmoCRM REST API Types (`src/api/`)
 
-Split into **backend** and **frontend** interfaces:
-
-#### Backend (API v4) - `src/interfaces/amocrm/backend/v4/`
+#### Backend API v4 - `src/api/amocrm/backend/v4/`
 
 Type definitions for AmoCRM REST API v4 responses. All entity types follow the API response structure with `_links` and `_embedded` metadata.
 
@@ -59,37 +60,53 @@ Type definitions for AmoCRM REST API v4 responses. All entity types follow the A
 
 **Important Utilities (`utils.ts`):**
 - `AmoCountriesIds` - ISO country code union type
-- `AmoCountries` - Country ID to Russian name mapping (361 countries)
+- `AmoCountries` - Country ID to localized name mapping (361 countries)
 - `AmoLegacyFieldTypes` - Numeric codes for legacy field types
 - `AmoCustomFieldType` - 16 field type variants (text, numeric, select, etc.)
 - `AmoCustomFieldCode` - System field codes (EMAIL, PHONE, WEB, etc.)
 - `AmoEntities` - Valid entity names for API endpoints
 
-#### Frontend - `src/interfaces/amocrm/frontend/`
+#### Frontend - `src/api/amocrm/frontend/`
 
 Types for AmoCRM JavaScript SDK and frontend constants. Contains:
 - `AmoGlobalObject` - Interface for AmoCRM global object in widgets
-- `contstants/` - Frontend constant types (User, TaskType, Manager, Account)
+- `constants/` - Frontend constant types (User, TaskType, Manager, Account)
 
-### AmoDEV Interfaces (`src/interfaces/amodev`)
+### Kommo Widget Types
 
-Internal AmoDEV platform types for account management:
-- `AmoDevAccount` - Internal account representation (uuid, amoId, ownerId)
-- `Product` - Product definitions
-- `AccountProduct` - Product-to-account associations
-- `AccountUser` - User account relationships
-- `AccountUserGroup` - User group management
+#### CRM Types (`src/crm/`)
 
-### Base Types (`src/interfaces/base.ts`)
+Global APP object and CRM entities accessible in Kommo widgets:
+- `KommoApp` - Global APP object interface with environment variables and API methods
+- Notification types - All APP.notifications API types
+- Constants - User, managers, groups, task types
+- User status - Online/offline status tracking
+
+#### Integration Types (`src/integration/`)
+
+Widget integration API and callbacks:
+- `KommoAbstractIntegration` - Widget integration API (render, settings, i18n, AJAX)
+- All callback types (render, init, bind_actions, settings, etc.)
+- `KommoContextWrapper` - Type transformer for callback context injection
+
+#### Manifest Types (`src/manifest/`)
+
+Widget manifest.json structure:
+- `KommoManifestJson` - Complete manifest structure
+- `KommoLocale` - Supported locales (en, es, pt)
+- `KommoLocationWithAdditionalProps` - Special locations requiring extra config
+- Location-specific configs (dp, advanced, mobile, sms, salesbot, left_menu)
+
+### Utility Types (`src/utils/`)
 
 Shared utilities:
-- `StringBoolean` - Enum for 'Y'/'N' string booleans (common in AmoCRM)
+- `StringBoolean` - Enum for 'Y'/'N' string booleans (common in AmoCRM/Kommo)
 
 ## Development Patterns
 
-### Adding New Entity Types
+### Adding New AmoCRM Entity Types
 
-1. Create entity type file in `src/interfaces/amocrm/backend/v4/[Entity].ts`
+1. Create entity type file in `src/api/amocrm/backend/v4/[Entity].ts`
 2. Import utilities: `import { AmoEntityCustomField, AmoApiResponse } from './utils'`
 3. Define entity type with API response structure:
    ```typescript
@@ -102,7 +119,14 @@ Shared utilities:
    }
    ```
 4. Create list type: `export type Amo[Entity]sList = AmoApiResponse<Amo[Entity]>`
-5. Export from `src/interfaces/amocrm/backend/v4/index.ts`
+5. Export from `src/api/amocrm/backend/v4/index.ts`
+
+### Adding New Kommo Widget Types
+
+1. Add to appropriate module (`crm/`, `integration/`, or `manifest/`)
+2. Include JSDoc comments with links to Kommo documentation
+3. Export from module's index.ts
+4. Consider adding usage examples in README.md
 
 ### ID Type Conventions
 
@@ -125,3 +149,59 @@ This provides type-safe access to custom field values with field metadata (field
 - Path alias: `@/*` maps to `src/*`
 - Source maps generated for debugging
 - Declaration files (.d.ts) generated for consumers
+- Declaration maps enabled for better IDE navigation
+
+## Usage Examples
+
+### Basic AmoCRM API Usage
+
+```typescript
+import { AmoLead, AmoLeadsList } from '@dicitech/amo-kommo-types/api';
+
+const lead: AmoLead = {
+  id: 12345,
+  name: 'Deal',
+  price: 50000,
+  // ... fully typed
+};
+```
+
+### Kommo Widget Development
+
+```typescript
+import { KommoRenderCallback, KommoInitCallback } from '@dicitech/amo-kommo-types/integration';
+
+export const render: KommoRenderCallback = (self) => {
+  self.render_template({ /* ... */ });
+  return true;
+};
+
+export const init: KommoInitCallback = (self) => {
+  const settings = self.get_settings();
+  return true;
+};
+```
+
+### Global APP Object
+
+```typescript
+// TypeScript knows about global APP
+const area = APP.getWidgetsArea();
+const user = APP.constant('user');
+APP.notifications.show_message({ /* fully typed */ });
+```
+
+## Maintenance Guidelines
+
+- Keep types synchronized with AmoCRM API v4 and Kommo Widget API
+- Add JSDoc comments for all public interfaces
+- Include `@see` links to official documentation
+- Mark deprecated types with `@deprecated` tag
+- Use semantic versioning for releases
+- Test types with real API responses when possible
+
+## Related Resources
+
+- [AmoCRM API Documentation](https://www.amocrm.com/developers/content/crm_platform/api-reference)
+- [Kommo Widget Development](https://developers.kommo.com/)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)

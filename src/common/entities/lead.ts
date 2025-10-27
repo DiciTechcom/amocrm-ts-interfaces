@@ -1,6 +1,11 @@
-import { AmoEntityCustomField, AmoApiResponse } from './utils'
+import { CrmEntityCustomField, CrmApiResponse } from '../custom-fields'
 
-export type AmoLead = {
+/**
+ * CRM Lead Entity
+ *
+ * Represents a lead (deal/opportunity) in the CRM system.
+ */
+export type CrmLead = {
   id: number
   name: string
   price: number
@@ -17,7 +22,7 @@ export type AmoLead = {
   closed_at: string | number
   closest_task_at: string | number
   is_deleted: boolean
-  custom_fields_values: AmoEntityCustomField[]
+  custom_fields_values: CrmEntityCustomField[]
   score: string | number
   account_id: string | number
   _links: {
@@ -46,4 +51,9 @@ export type AmoLead = {
   }
 }
 
-export type AmoLeadsList = AmoApiResponse<AmoLead>
+/**
+ * CRM Leads List Response
+ *
+ * API response structure for paginated lead lists.
+ */
+export type CrmLeadsList = CrmApiResponse<CrmLead>

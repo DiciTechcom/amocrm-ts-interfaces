@@ -1,0 +1,21 @@
+childConcurrency: 24
+
+dedupeInjectedDeps: true
+
+enablePrePostScripts: true
+
+networkConcurrency: 48
+
+onlyBuiltDependencies: []
+
+packageManagerStrict: false
+
+savePrefix: "~"
+
+shamefullyHoist: true
+
+shellEmulator: true
+
+sideEffectsCache: false
+
+strictPeerDependencies: false

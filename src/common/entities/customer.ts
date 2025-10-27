@@ -1,6 +1,11 @@
-import { AmoEntityCustomField, AmoApiResponse } from './utils'
+import { CrmEntityCustomField, CrmApiResponse } from '../custom-fields'
 
-export type AmoContact = {
+/**
+ * CRM Customer Entity
+ *
+ * Represents a customer (recurring sales) in the CRM system.
+ */
+export type CrmCustomer = {
   id: number | string
   name: string
   first_name: string
@@ -12,8 +17,16 @@ export type AmoContact = {
   created_at: number | string
   updated_at: number | string
   closest_task_at: null | number | string
-  custom_fields_values: AmoEntityCustomField[]
+  custom_fields_values: CrmEntityCustomField[]
   account_id: number | string
+  is_deleted: boolean
+  ltv: number
+  purchases_count: number
+  average_check: number
+  status_id: number
+  periodicity: number
+  next_price: number
+  next_date: number
   _links: {
     self: {
       href: string
@@ -32,4 +45,9 @@ export type AmoContact = {
   }
 }
 
-export type AmoContactsList = AmoApiResponse<AmoContact>
+/**
+ * CRM Customers List Response
+ *
+ * API response structure for paginated customer lists.
+ */
+export type CrmCustomersList = CrmApiResponse<CrmCustomer>

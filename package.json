@@ -1,32 +1,54 @@
 {
-  "name": "@amodev/interfaces",
-  "version": "4.0.9",
-  "description": "Интерфейсы сущностей AmoDEV",
+  "name": "@dicitech/amo-kommo-types",
+  "version": "1.0.0",
+  "description": "Unofficial TypeScript type definitions for AmoCRM and Kommo API + Widgets. Comprehensive type safety for REST API entities, widget development, and CRM integration.",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "packageManager": "pnpm@10.19.0",
   "scripts": {
     "build": "rimraf ./dist && tsc",
-    "build:check": "tsc --noEmit"
+    "build:check": "tsc --noEmit",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build"
   },
-  "types": "dist/index.d.ts",
   "files": [
-    "dist/**/*"
+    "dist/**/*",
+    "README.md",
+    "LICENSE"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devamo/interfaces.git"
+    "url": "git+https://github.com/DiciTechcom/amo-kommo-types.git"
   },
   "keywords": [
     "amocrm",
-    "amodev",
-    "amo"
+    "amocrm-api",
+    "amocrm-v4",
+    "kommo",
+    "kommo-widget",
+    "typescript",
+    "types",
+    "type-definitions",
+    "crm",
+    "api",
+    "interfaces",
+    "widget"
   ],
-  "author": "Yaroslav Shelomentsev",
+  "author": "Dicitech <info@dicitech.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/devamo/interfaces/issues"
+    "url": "https://github.com/DiciTechcom/amo-kommo-types/issues"
   },
-  "homepage": "https://amodev.ru/faq/repositories/interfaces",
+  "homepage": "https://github.com/DiciTechcom/amo-kommo-types#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "devDependencies": {
-    "typescript": "^3.9.10"
+    "rimraf": "~6.0.1",
+    "typescript": "~3.9.10"
   }
 }

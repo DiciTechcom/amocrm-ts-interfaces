@@ -1,6 +1,11 @@
-import { AmoEntityCustomField, AmoApiResponse } from './utils'
+import { CrmEntityCustomField, CrmApiResponse } from '../custom-fields'
 
-export type AmoCompany = {
+/**
+ * CRM Company Entity
+ *
+ * Represents a company (organization) in the CRM system.
+ */
+export type CrmCompany = {
   id: number | string
   name: string
   responsible_user_id: number | string
@@ -10,7 +15,7 @@ export type AmoCompany = {
   created_at: number | string
   updated_at: number | string
   closest_task_at: null | number | string
-  custom_fields_values: AmoEntityCustomField[]
+  custom_fields_values: CrmEntityCustomField[]
   account_id: number | string
   _links: {
     self: {
@@ -22,4 +27,9 @@ export type AmoCompany = {
   }
 }
 
-export type AmoCompaniesList = AmoApiResponse<AmoCompany>
+/**
+ * CRM Companies List Response
+ *
+ * API response structure for paginated company lists.
+ */
+export type CrmCompaniesList = CrmApiResponse<CrmCompany>

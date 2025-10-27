@@ -1,185 +1,51 @@
-export type AmoCountriesIds =
-  | 'RU'
-  | 'UA'
-  | 'KZ'
-  | 'AU'
-  | 'AT'
-  | 'AZ'
-  | 'AX'
-  | 'AL'
-  | 'DZ'
-  | 'VI'
-  | 'AS'
-  | 'AD'
-  | 'AR'
-  | 'AM'
-  | 'AW'
-  | 'AF'
-  | 'BD'
-  | 'BH'
-  | 'BY'
-  | 'BE'
-  | 'BG'
-  | 'BO'
-  | 'BA'
-  | 'BW'
-  | 'BR'
-  | 'BQ'
-  | 'IO'
-  | 'VG'
-  | 'BT'
-  | 'VA'
-  | 'GB'
-  | 'HU'
-  | 'VE'
-  | 'UM'
-  | 'VN'
-  | 'HT'
-  | 'GP'
-  | 'DE'
-  | 'HN'
-  | 'HK'
-  | 'LY'
-  | 'GL'
-  | 'GR'
-  | 'GE'
-  | 'GU'
-  | 'DK'
-  | 'JE'
-  | 'DJ'
-  | 'DO'
-  | 'EG'
-  | 'EH'
-  | 'NQ'
-  | 'ZW'
-  | 'PZ'
-  | 'IL'
-  | 'IN'
-  | 'ID'
-  | 'JO'
-  | 'IQ'
-  | 'IE'
-  | 'IR'
-  | 'IS'
-  | 'ES'
-  | 'IT'
-  | 'YE'
-  | 'KH'
-  | 'CA'
-  | 'CT'
-  | 'QA'
-  | 'KE'
-  | 'CY'
-  | 'KI'
-  | 'CN'
-  | 'CC'
-  | 'CO'
-  | 'KP'
-  | 'CR'
-  | 'KW'
-  | 'KG'
-  | 'CW'
-  | 'LA'
-  | 'LV'
-  | 'LB'
-  | 'LT'
-  | 'LI'
-  | 'LU'
-  | 'YT'
-  | 'MY'
-  | 'MV'
-  | 'MT'
-  | 'MA'
-  | 'MQ'
-  | 'MH'
-  | 'MX'
-  | 'FX'
-  | 'MC'
-  | 'MN'
-  | 'MM'
-  | 'NR'
-  | 'NP'
-  | 'NG'
-  | 'AN'
-  | 'NL'
-  | 'NI'
-  | 'NU'
-  | 'NZ'
-  | 'NO'
-  | 'AE'
-  | 'PU'
-  | 'OM'
-  | 'BV'
-  | 'JT'
-  | 'MI'
-  | 'IM'
-  | 'NF'
-  | 'CX'
-  | 'WK'
-  | 'CK'
-  | 'TC'
-  | 'HM'
-  | 'PK'
-  | 'PW'
-  | 'PA'
-  | 'PY'
-  | 'PE'
-  | 'PN'
-  | 'PL'
-  | 'PT'
-  | 'PR'
-  | 'MK'
-  | 'MD'
-  | 'RW'
-  | 'RO'
-  | 'US'
-  | 'SV'
-  | 'SM'
-  | 'SA'
-  | 'SJ'
-  | 'MP'
-  | 'PM'
-  | 'RS'
-  | 'SG'
-  | 'SY'
-  | 'SK'
-  | 'SI'
-  | 'SO'
-  | 'SD'
-  | 'TJ'
-  | 'TH'
-  | 'TW'
-  | 'TK'
-  | 'TV'
-  | 'TN'
-  | 'TM'
-  | 'TR'
-  | 'UG'
-  | 'UZ'
-  | 'UY'
-  | 'FO'
-  | 'FM'
-  | 'PH'
-  | 'FI'
-  | 'FR'
-  | 'GF'
-  | 'PF'
-  | 'TF'
-  | 'HR'
-  | 'ME'
-  | 'CZ'
-  | 'CL'
-  | 'CH'
-  | 'SE'
-  | 'LK'
-  | 'ER'
-  | 'EE'
-  | 'ET'
-  | 'ZA'
-  | 'GS'
-  | 'JP'
+/**
+ * CRM Entity Types
+ *
+ * Valid entity names for API endpoints.
+ */
+export type CrmEntities = 'leads' | 'contacts' | 'companies' | 'customers' | 'segments' | 'catalogs'
 
-export const AmoCountries = [
+/**
+ * String Boolean Enum
+ *
+ * Used by CRM API for boolean values in string format.
+ */
+export enum StringBoolean {
+  Y = 'Y',
+  N = 'N'
+}
+
+/**
+ * CRM Country ISO Codes
+ *
+ * Union type of all supported ISO country codes (361 countries).
+ */
+export type CrmCountriesIds =
+  | 'RU' | 'UA' | 'KZ' | 'AU' | 'AT' | 'AZ' | 'AX' | 'AL' | 'DZ' | 'VI'
+  | 'AS' | 'AD' | 'AR' | 'AM' | 'AW' | 'AF' | 'BD' | 'BH' | 'BY' | 'BE'
+  | 'BG' | 'BO' | 'BA' | 'BW' | 'BR' | 'BQ' | 'IO' | 'VG' | 'BT' | 'VA'
+  | 'GB' | 'HU' | 'VE' | 'UM' | 'VN' | 'HT' | 'GP' | 'DE' | 'HN' | 'HK'
+  | 'LY' | 'GL' | 'GR' | 'GE' | 'GU' | 'DK' | 'JE' | 'DJ' | 'DO' | 'EG'
+  | 'EH' | 'NQ' | 'ZW' | 'PZ' | 'IL' | 'IN' | 'ID' | 'JO' | 'IQ' | 'IE'
+  | 'IR' | 'IS' | 'ES' | 'IT' | 'YE' | 'KH' | 'CA' | 'CT' | 'QA' | 'KE'
+  | 'CY' | 'KI' | 'CN' | 'CC' | 'CO' | 'KP' | 'CR' | 'KW' | 'KG' | 'CW'
+  | 'LA' | 'LV' | 'LB' | 'LT' | 'LI' | 'LU' | 'YT' | 'MY' | 'MV' | 'MT'
+  | 'MA' | 'MQ' | 'MH' | 'MX' | 'FX' | 'MC' | 'MN' | 'MM' | 'NR' | 'NP'
+  | 'NG' | 'AN' | 'NL' | 'NI' | 'NU' | 'NZ' | 'NO' | 'AE' | 'PU' | 'OM'
+  | 'BV' | 'JT' | 'MI' | 'IM' | 'NF' | 'CX' | 'WK' | 'CK' | 'TC' | 'HM'
+  | 'PK' | 'PW' | 'PA' | 'PY' | 'PE' | 'PN' | 'PL' | 'PT' | 'PR' | 'MK'
+  | 'MD' | 'RW' | 'RO' | 'US' | 'SV' | 'SM' | 'SA' | 'SJ' | 'MP' | 'PM'
+  | 'RS' | 'SG' | 'SY' | 'SK' | 'SI' | 'SO' | 'SD' | 'TJ' | 'TH' | 'TW'
+  | 'TK' | 'TV' | 'TN' | 'TM' | 'TR' | 'UG' | 'UZ' | 'UY' | 'FO' | 'FM'
+  | 'PH' | 'FI' | 'FR' | 'GF' | 'PF' | 'TF' | 'HR' | 'ME' | 'CZ' | 'CL'
+  | 'CH' | 'SE' | 'LK' | 'ER' | 'EE' | 'ET' | 'ZA' | 'GS' | 'JP'
+
+/**
+ * CRM Countries List
+ *
+ * Array of all countries with ISO codes and localized names (361 entries).
+ */
+export const CrmCountries = [
   { id: 'RU', title: 'Россия' },
   { id: 'UA', title: 'Украина' },
   { id: 'KZ', title: 'Казахстан' },
@@ -361,7 +227,12 @@ export const AmoCountries = [
   { id: 'JP', title: 'Япония' }
 ]
 
-export const AmoLegacyFieldTypes = {
+/**
+ * Legacy Custom Field Type Codes
+ *
+ * Numeric codes for legacy field types (backward compatibility).
+ */
+export const CrmLegacyFieldTypes = {
   text: 1,
   numeric: 2,
   checkbox: 3,
@@ -379,60 +250,4 @@ export const AmoLegacyFieldTypes = {
   price: 20,
   category: 18,
   items: 16
-}
-
-export type AmoEntities = 'leads' | 'contacts' | 'companies' | 'customers' | 'segments' | 'catalogs'
-
-export type AmoApiResponse<Entity> = {
-  _page: number
-  _links: {
-    self: { href: string }
-    next: { href: string }
-  }
-  _embedded: {
-    [entity in AmoEntities]: Entity[]
-  }
-}
-
-export type AmoCustomFieldType =
-  | 'text'
-  | 'numeric'
-  | 'checkbox'
-  | 'select'
-  | 'multiselect'
-  | 'date'
-  | 'url'
-  | 'textarea'
-  | 'radiobutton'
-  | 'streetaddress'
-  | 'smart_address'
-  | 'birthday'
-  | 'legal_entity'
-  | 'date_time'
-  | 'price'
-  | 'category'
-  | 'items'
-
-export type AmoCustomFieldCode = 'EMAIL' | 'PHONE' | 'WEB' | 'ADDRESS' | 'POSITION'
-
-export type AmoCustomFieldTypeAddress = {
-  name: string | number | null
-  entity_type: string | number | null
-  vat_id: string | number | null
-  tax_registration_reason_code: string | number | null
-  address: string | number | null
-  kpp: string | number | null
-  external_uid: string | number | null
-}
-
-export type AmoEntityCustomField = {
-  field_id: number
-  field_name: string
-  field_code: AmoCustomFieldCode | null
-  field_type: AmoCustomFieldType
-  values: Array<{
-    value: string | number | AmoCustomFieldTypeAddress
-    enum_id: string | number
-    enum_code: string | number
-  }>
 }
